@@ -1,4 +1,21 @@
 {{title}}
 
 <router-outlet></router-outlet>
-<button pButton type="button" label="Click" ></button>
+<p-table [value]="tableData">
+    <ng-template pTemplate="header">
+        <tr>
+            <th>MessageID</th>
+            <th>Message</th>
+            <th>EmptyMessage</th>
+            <th>MessageDate</th>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-tblData>
+        <tr>
+            <td>{{tblData.MessageID}}</td>
+            <td>{{tblData.Message}}</td>
+            <td>{{tblData.EmptyMessage}}</td>
+            <td>{{tblData.MessageDate}}</td>
+        </tr>
+    </ng-template>
+</p-table>
