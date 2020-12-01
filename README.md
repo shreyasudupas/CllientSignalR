@@ -3,7 +3,12 @@ SignalR used to connect the client with the Hub.
 
 I have created an application that does not require hard refresh to see the updated value from the Database to the UI Dashboard.
 
-In database I have created a trigger that calls the API as soon as there is a change in column value. This API in turn pushes the data to the client though signalR hub.
+API
+Create a API for signalR Hub , I have used APS.NET WEB API 2 and installed Owin startup as my starup class
+
+Next create a Hub where the client will connect to the server, here is the code for the hub
+
+![](demo/MessageHubAPI.png)
 
 Here is the Demo of the project
 ![](demo/SignarDemo.gif)
