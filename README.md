@@ -5,6 +5,9 @@ I have created an application that does not require hard refresh to see the upda
 
 In database I have created a trigger that calls the API as soon as there is a change in column value. This API in turn pushes the data to the client though signalR hub.
 
+Demo of the project
+![SinalR Demo with Database updates](CllientSignalR/demo/SignarDemo.gif)
+
 
 Refrences:
 https://stackoverflow.com/questions/41378582/angular-2-typescript-using-signalr
