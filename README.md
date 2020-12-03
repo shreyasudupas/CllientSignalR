@@ -42,6 +42,8 @@ Here is the Demo of the project
     <li>Connect the hub -> connection.start()</li>
     <li>Next when the hub pushes the data from the server use this function -> contosoChatHubProxy.on('updateMessage', function(messages:any)</li>
   </ul></p>
+  
+  ![](demo/ClientAccessHub.png)
 
   <p>Once all this is done run API and angular client first the client will connect to the API Hub once the connection is established then only data can be pushed to the server.</p>
 
