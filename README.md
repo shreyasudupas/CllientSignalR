@@ -45,18 +45,32 @@ dictonary table and <b>SendMessage</b> method will send message back to client (
   <ul>
     <li>Create a Hub Connection ->  $.hubConnection(serverUrl); </li>
     <li>Connect to the hub method -> connection.createHubProxy('MessageHub');</li>
-    <li>Code shows how above points are implemented<br/></li>
-    ![](demo/clientHubConnect.png)
-    <br/>
-    ![](demo/clientHubConnection.png)
     <li>Connect the hub -> connection.start()</li>
     <li>Next when the hub pushes the data from the server use this function -> contosoChatHubProxy.on('updateMessage', function(messages:any)</li>
-  </ul></p>
+  </ul>
+  Code shows how above points are implemented
+  </p>
   
+  pic 1)
+ ![](demo/clientHubConnect.png)
+    <br/>
+  pic 2)
+ ![](demo/clientHubConnection.png)  
   
-
   <p>Once all this is done run API and angular client first the client will connect to the API Hub once the connection is established then only data can be pushed to the server.</p>
+  
+  <h4>Client Send Data to Server</h4>
+  <p> If you want to send the data from client to server then use invoke method that is present in Hub class. Here I have a button on click on that will call the hub class and then Hub will send a reciveMessage to the server which will be listening the in the client (pic 2 of client) and update a message in the UI</p>
+  
+ ![](demo/clientInvokeClient.png)  
 
+<h4>Recieve message from server</h4>
+<p>As explained earlier functionlity is similar to that but there is another function which is listning to the Hub which will send updated table details when there is change in database, if there is then the trigger will trigger the Web API and pass the updated message to the API , which in turn will trigger Hub class <b>SendMessage</b> and will send to those clients that are connected to the dictornary table and the client will listning to that hub class will update the message table in the UI </p>
+
+ ![](demo/clientRecieveMessage.png)  
+ 
+ Finally run the code and this is how the UI is shown
+ ![](demo/UI-2.png)  
 
 <b>Refrences:</b><br/>
 https://stackoverflow.com/questions/41378582/angular-2-typescript-using-signalr
