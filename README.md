@@ -11,20 +11,26 @@ Here is the Demo of the project
   <b>Steps to recreate the above project</b>  
   </p>
   <div>
-  <b><h4>API Methods</h4><b>
+  <b><h4>API Methods</h4></b>
     <p> Create a API for signalR Hub , I have used APS.NET WEB API 2 and installed Owin startup as my starup class</p>
      <p>Next create a Hub where the client will connect to the server, here is the code for the hub</p>
   </div>
   
-  ![](demo/MessageHubAPI.png)
+  ![](demo/HUBAPI-1.png)
 <br/>
-
+The first image shows OnConnected Task when the client initally connects with the signalR Hub (client connection is shown after this topic) will logs the connection in the
+dictonary table and <b>SendMessage</b> method will send message back to client (client which will be listning to the server to push the content) to those connection which are present in the dictonary list. The second image shows below shows <b>RecieveMessage </b> how to recieve message from client once the connection is made and then that method is sending the message back to that particular client usiing the connectionID. Next shows the OnDisconnected which will be called when user closes the tab then remove the connection from dictonary table. Use the dictonary table only if you have one server if you have multiple server (load balancing) then create a Database table for this purpose and store in the table when OnConnected and remove the record when Disconnected (logic is upto you). Below image shows this.
+<br/>
+![](demo/HUBAPI-1.png)
+<br/>
+<h3>Startup class connection</h3>
 <p>Here <b>SendMessage</b> in the Hub method that will be accessed by controller inorder to push the data to the client , but <b>updateMessage</b> is the message that is method is accessed by the client <b>(dont get confused)</b>.<p/>
 
 <p>Next enable cors in signalR in Startup class or else signalR client will not be able to connect to this API </p>
 
 ![](demo/MessageHubStartup.png)
-
+<br/>
+<h3>Database changes</h3>
 <p>Next, I have written a Trigger that inturn calls the APIs when there is a update in the database as shown below</p>
 
 ![](demo/SPCallAPI.png)
@@ -33,17 +39,21 @@ Here is the Demo of the project
 
 ![](demo/ControllerPushDatatoClient.png)
 
-<p><h3> Angular Client</h3></p>
+<p><h3> Angular 8 Client</h3></p>
 <p> In this I have used Jquery signalR and installed all required packages. 
   Steps to follow:
   <ul>
     <li>Create a Hub Connection ->  $.hubConnection(serverUrl); </li>
     <li>Connect to the hub method -> connection.createHubProxy('MessageHub');</li>
+    <li>Code shows how above points are implemented<br/></li>
+    ![](demo/clientHubConnect.png)
+    <br/>
+    ![](demo/clientHubConnection.png)
     <li>Connect the hub -> connection.start()</li>
     <li>Next when the hub pushes the data from the server use this function -> contosoChatHubProxy.on('updateMessage', function(messages:any)</li>
   </ul></p>
   
-  ![](demo/ClientAccessHub.png)
+  
 
   <p>Once all this is done run API and angular client first the client will connect to the API Hub once the connection is established then only data can be pushed to the server.</p>
 
