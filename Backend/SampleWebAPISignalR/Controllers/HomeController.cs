@@ -26,9 +26,11 @@ namespace SampleWebAPISignalR.Controllers
         [HttpPost]
         public IHttpActionResult UpdateResult(List<Messages> messages)
         {
+            MessagesHub.MessageHub hub = new MessagesHub.MessageHub();
             try
             {
-                MessagesHub.MessageHub.SendMessage(messages);
+                //MessagesHub.MessageHub.SendMessage(messages);
+                hub.SendMessage(messages);
 
                 return Ok();
             }
@@ -36,6 +38,10 @@ namespace SampleWebAPISignalR.Controllers
             {
 
                 return InternalServerError(ex);
+            }
+            finally
+            {
+                hub.Dispose();
             }
         }
 
@@ -57,5 +63,6 @@ namespace SampleWebAPISignalR.Controllers
                 return InternalServerError(ex);
             }
         }
+
     }
 }
