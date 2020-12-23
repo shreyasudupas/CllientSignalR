@@ -21,7 +21,7 @@ Here is the Demo of the project
 The first image shows OnConnected Task when the client initally connects with the signalR Hub (client connection is shown after this topic) will logs the connection in the
 dictonary table and <b>SendMessage</b> method will send message back to client (client which will be listning to the server to push the content) to those connection which are present in the dictonary list. The second image shows below shows <b>RecieveMessage </b> how to recieve message from client once the connection is made and then that method is sending the message back to that particular client usiing the connectionID. Next shows the OnDisconnected which will be called when user closes the tab then remove the connection from dictonary table. Use the dictonary table only if you have one server if you have multiple server (load balancing) then create a Database table for this purpose and store in the table when OnConnected and remove the record when Disconnected (logic is upto you). Below image shows this.
 <br/>
-![](demo/HUBAPI-1.png)
+![](demo/HUBAPI-2.png)
 <br/>
 <h3>Startup class connection</h3>
 <p>Here <b>SendMessage</b> in the Hub method that will be accessed by controller inorder to push the data to the client , but <b>updateMessage</b> is the message that is method is accessed by the client <b>(dont get confused)</b>.<p/>
